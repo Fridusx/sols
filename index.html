@@ -33,11 +33,56 @@
 	<!-- Google web font 
    ================================================== -->	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
-	
+   
+   <!-- Что то ? ================================================== -->	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
+     <i class="fa-solid fa-gear gear-icon"></i>
+   
+  <script>
+    const gear = document.querySelector('.gear-icon');
+    const animationDuration = 12000; // 12 секунд
 
+    function updateGear() {
+      const time = performance.now() % animationDuration;
+      const progress = (time / animationDuration) * 100;
 
+      let opacity = 1;
+
+      // Исчезает с 33% по 50%, появляется с 50% по 66%
+      if (progress >= 33 && progress <= 66) {
+        if (progress <= 50) {
+          opacity = 1 - (progress - 33) / (50 - 33);
+        } else {
+          opacity = (progress - 50) / (66 - 50);
+        }
+      }
+
+      gear.style.opacity = opacity;
+      gear.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+
+      // В момент почти полной прозрачности меняем позицию между снизу и сверху
+      if (progress >= 49 && progress <= 51) {
+        if (gear.classList.contains('right-bottom')) {
+          gear.classList.remove('right-bottom');
+          gear.classList.add('right-top');
+        } else {
+          gear.classList.remove('right-top');
+          gear.classList.add('right-bottom');
+        }
+      }
+
+      // Вращаем шестерёнку
+      const rotationDeg = (time / 1000) * 60;
+      gear.style.transform = `rotate(${rotationDeg}deg)`;
+
+      requestAnimationFrame(updateGear);
+    }
+
+    updateGear();
+  </script>
+   
 <!-- Preloader section
 ================================================== -->
 <div class="preloader">
@@ -78,9 +123,9 @@
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="1.6s">Sola izveide</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="1.9s">Pie Dizaina un tehnoloģiju kabineta </h3>
-             <h3 class="wow fadeInUp" data-wow-delay="1.9s">Rīgas Zolitūdes ģimnāzijā</h3>
+              <h1 class="wow fadeIn" data-wow-delay="0.5s">Sola izveide</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="0.6s">Pie Dizaina un tehnoloģiju kabineta </h3>
+             <h3 class="wow fadeInUp" data-wow-delay="0.7s">Rīgas Zolitūdes ģimnāzijā</h3>
           </div>
 			</div>
 
@@ -98,7 +143,7 @@
          <div class="col-md-12 col-sm-12">
             
                <!-- iso section -->
-               <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
+               <div class="iso-section wow fadeInUp" data-wow-delay="2.0s">
 
                   <ul class="filter-wrapper clearfix">
                            <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
@@ -117,6 +162,7 @@
                                  <a href="Pirmais-solis.html">
                                  <div class="portfolio-thumb">
                                     <img src="images/portfolio-img1V.png" class="img-responsive" alt="Modelēšana">
+                                    <h6>Noklikšķiniet šeit un uzziniet vairāk</h6>
                                        <div class="portfolio-overlay">
                                           <div class="portfolio-item">
                                                 <i class="fa fa-link"></i>
@@ -131,6 +177,7 @@
                                  <a href="Otrais-solis.html">
                                  <div class="portfolio-thumb">
                                     <img src="images/portfolio-img2V.jpg" class="img-responsive" alt="Materiāla atrašana">
+                                    <h6>Noklikšķiniet šeit un uzziniet vairāk</h6>
                                        <div class="portfolio-overlay">
                                           <div class="portfolio-item">
                                                 <i class="fa fa-link"></i>
@@ -145,6 +192,7 @@
                                  <a href="Tresais_solis.html">
                                  <div class="portfolio-thumb">
                                     <img src="images/portfolio-img3V.jpg" class="img-responsive" alt="Projektēšana">
+                                    <h6>Noklikšķiniet šeit un uzziniet vairāk</h6>
                                        <div class="portfolio-overlay">
                                           <div class="portfolio-item">
                                                 <i class="fa fa-link"></i>
@@ -159,6 +207,7 @@
                                  <a href="Materiali.html">
                                  <div class="portfolio-thumb">
                                     <img src="images/portfolio-img4V.jpg" class="img-responsive" alt="Materiāli">
+                                    <h6>Noklikšķiniet šeit un uzziniet vairāk</h6>
                                        <div class="portfolio-overlay">
                                           <div class="portfolio-item">
                                                 <i class="fa fa-link"></i>
@@ -174,6 +223,7 @@
                                  <a href="prezentacija.html">
                                  <div class="portfolio-thumb">
                                     <img src="images/portfolio-img5V.png" class="img-responsive" alt="Prezentācija youtube logo">
+                                    <h6>Noklikšķiniet šeit un uzziniet vairāk</h6>
                                        <div class="portfolio-overlay">
                                           <div class="portfolio-item">
                                            <i class="fa fa-link"></i> 
@@ -204,16 +254,28 @@
 		<div class="row">
 
 			<div class="col-md-12 col-sm-12">
-				<p class="wow fadeInUp"  data-wow-delay="0.3s">Autori: 
-                  Arsenijs Volodovs un Daniils Anaško  </p>
 				
-               <p class="wow fadeInUp"  data-wow-delay="0.3s">Darba vadītājs: 
+               <p class="wow fadeInUp"  data-wow-delay="0.3s"   > Šī mājaslapa tika izveidota, lai palīdzētu skolēniem izstrādāt un uzbūvēt savu solu – soli pa solim! </p>
+               <p class="wow fadeInUp"  data-wow-delay="0.3s"> Visa informācija šeit ir oriģināla un aizsargāta ar autortiesībām.
+                  <b>NAV PAREDZĒTA TĀLĀKAI KOPĒŠANAI BEZ ATĻAUJAS.</b></p>
+              <p class="wow fadeInUp"  data-wow-delay="0.3s"><i>Projekts tika realizēts 2025. gada pavasarī 12. klasē.</i></p>
+               	<p class="wow fadeInUp"  data-wow-delay="0.3s"><i>Mājaslapa izveidota 22.06.2025.</i></p>
+               <p class="wow fadeInUp animated" data-wow-delay="0.8s"  style=" margin-top:50px; visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Autori: 
+                   Arsenijs Volodovs un Daniils Anaško  </p>
+               <p class="wow fadeInUp animated" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Darba vadītājs: 
                  Ivans Griņevičs  </p>
-               	<p class="wow fadeInUp"  data-wow-delay="0.6s">Mājaslapa izveidota 22.06.2025.</p>
 			</div>
 			
 		</div>
-	</div>
+       <div class="footer-logo" >
+          <div class="wow fadeIn" data-wow-delay="1.6s">
+          <a href="https://zolitude.lv">
+       <div class="glow-wrapper">
+       <img src="images/rzg2.png" class="img-responsive" alt="Rīgas Zolitūdes ģimnāzija logo">
+         </div>
+          </a>
+	</div></div>
+   </div>
 </footer>
 
 

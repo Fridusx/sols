@@ -1,20 +1,70 @@
-/*
 
-Template 2082 Pure Mix
 
-http://www.tooplate.com/view/2082-pure-mix
 
-*/
-
-/* Body 
-------------------------------------- */
+ 
 body {
-		background: #ffffff;
-    font-family: 'Source Sans Pro', sans-serif;
+       
+    animation: bgColorShift 60s ease-in-out infinite;
+   font-family: 'Source Sans Pro', sans-serif;
     font-style: normal;
     font-weight: 300;
     position: relative;
-}
+  }
+  @keyframes bgColorShift {
+    0%   { background-color: #ffffff; } 
+    33%  { background-color: #e6f1f6; }
+    66%  { background-color: #e6f2ff; } 
+    100% { background-color: #ffffff; }  }
+    .gear-icon {
+    position: fixed;
+    right: 20px;
+    font-size: 80px;
+    color: #d8edff;
+    animation: colorShift 10s ease-in-out infinite;
+    cursor: pointer;
+    transition: top 0.5s ease, bottom 0.5s ease, opacity 0.3s ease;
+    z-index: 9999;
+    pointer-events: auto;
+  }
+
+  .right-bottom {
+    bottom: 20px;
+    top: auto;
+  }
+
+  .right-top {
+    top: 20px;
+    bottom: auto;
+  }
+
+  .gear-icon:hover {
+    color: #c8e9ff;
+    filter: drop-shadow(0 0 10px #b1dffe);
+  }
+
+
+  @keyframes spin {
+    from { transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+  }
+
+  @keyframes colorShift {
+    0%, 100% { color: #e3f2ff; }
+    50% { color: #b1dffe; }
+  }
+  @media (max-width: 768px) {
+    .gear-icon {
+      display: none !important;
+    }
+  }
+
+  @keyframes gearOpacity {
+    0%, 33% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+/* Body 
+------------------------------------- */
+
 
 html,body {
   width: 100%;
@@ -55,6 +105,11 @@ h3 {
 h5 {
   font-weight: 400;
   letter-spacing: 1px;
+}
+h6 {
+  font-weight: 400;
+  letter-spacing: 1px;
+   color: #ff0606;
 }
 
 p {
@@ -411,7 +466,7 @@ a.icon {
 }
 
 #header .header-thumb {
-  background: #ffffff;
+  animation: bgColorShift 60s ease-in-out infinite;
   border: 10px solid #f9f9f9;
   padding: 62px 20px 62px 20px;
 }
@@ -878,3 +933,73 @@ footer {
 @media (max-width: 450px) {
   .intro-inner {top: 50%;}
 }
+
+
+
+
+
+
+
+
+
+       .content {
+      flex: 1;
+    }
+
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    /* Анимация свечения с разными оттенками синего */
+    @keyframes blueGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 10px #a0d8f7,
+          0 0 20px #7ec0ee,
+          0 0 30px #5ca0db,
+          0 0 40px #3a7cca;
+      }
+      50% {
+        box-shadow:
+          0 0 15px #c0e8ff,
+          0 0 30px #99d1ff,
+          0 0 45px #66b3ff,
+          0 0 60px #3396ff;
+      }
+    }
+
+    .glow-wrapper {
+      border-radius: 20px;
+      padding: 2px;
+      background: #000;
+      animation: blueGlow 4s ease-in-out infinite;
+      transition: box-shadow 0.3s ease-in-out;
+      cursor: pointer; /* курсор при наведении */
+    }
+
+    /* При наведении - ярко-синяя вспышка */
+    .glow-wrapper:hover {
+      animation: none; /* отключаем анимацию */
+      box-shadow:
+        0 0 20px #00bfff,
+        0 0 40px #1e90ff,
+        0 0 60px #007fff,
+        0 0 80px #005f99;
+    }
+
+    .glow-wrapper img {
+      max-width: 100px;
+      width: 20vw;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+    }
+
+    @media (max-width: 400px) {
+      .glow-wrapper img {
+        max-width: 70px;
+      }}
