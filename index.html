@@ -38,59 +38,48 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-     <i class="fa-solid fa-gear gear-icon"></i>
    
-  <script>
-    const gear = document.querySelector('.gear-icon');
-    const animationDuration = 12000; // 12 секунд
-
-    function updateGear() {
-      const time = performance.now() % animationDuration;
-      const progress = (time / animationDuration) * 100;
-
-      let opacity = 1;
-
-      // Исчезает с 33% по 50%, появляется с 50% по 66%
-      if (progress >= 33 && progress <= 66) {
-        if (progress <= 50) {
-          opacity = 1 - (progress - 33) / (50 - 33);
-        } else {
-          opacity = (progress - 50) / (66 - 50);
-        }
-      }
-
-      gear.style.opacity = opacity;
-      gear.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
-
-      // В момент почти полной прозрачности меняем позицию между снизу и сверху
-      if (progress >= 49 && progress <= 51) {
-        if (gear.classList.contains('right-bottom')) {
-          gear.classList.remove('right-bottom');
-          gear.classList.add('right-top');
-        } else {
-          gear.classList.remove('right-top');
-          gear.classList.add('right-bottom');
-        }
-      }
-
-      // Вращаем шестерёнку
-      const rotationDeg = (time / 1000) * 60;
-      gear.style.transform = `rotate(${rotationDeg}deg)`;
-
-      requestAnimationFrame(updateGear);
-    }
-
-    updateGear();
-  </script>
    
 <!-- Preloader section
 ================================================== -->
-<div class="preloader">
+  <div class="preloader">
+    <div class="gears">
+      <i class="fas fa-cog gear"></i>
+      <i class="fas fa-cog gear reverse"></i>
+    </div>
+    <i class="fas fa-lightbulb bulb"></i>
+  </div>
+   
+ <script>
+    // Лампочка включается на 0.8 сек
+    setTimeout(() => {
+      document.querySelector('.bulb').classList.add('on');
+    }, 300);
 
-	<div class="sk-spinner sk-spinner-pulse"></div>
+    // Показ сайта на 1.5 сек
+    setTimeout(() => {
+      document.querySelector('.preloader').style.opacity = '0';
+      document.querySelector('.site-content').classList.remove('hidden');
+      document.querySelector('.site-content').classList.add('visible');
+      document.body.style.overflow = 'auto';
+    }, 500);
+  </script>
 
-</div>
+     <!-- Молоток в верхнем левом углу -->
+    <script>
+    const hammer = document.querySelector('.hammer');
+    const wrench = document.querySelector('.wrench');
 
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        hammer.classList.add('hidden');
+        wrench.classList.add('hidden');
+      } else {
+        hammer.classList.remove('hidden');
+        wrench.classList.remove('hidden');
+      }
+    });
+  </script>
 
 <!-- Navigation section
 ================================================== -->
@@ -100,13 +89,16 @@
       <div class="navbar">
          <div class="container">
             <div class="row">
-
+                <div class="brand1">  
+            
               <div class="brand">
-                <a href="index.html">Izveido pats</a>
+                 <i class="fas fa-hammer hammer"></i>
+                 <a href="index.html">Izveido pats</a>
+                 <i class="fas fa-wrench wrench"></i>
               </div>
 
-              
-
+               
+               </div>
             </div>
          </div>
       </div>
